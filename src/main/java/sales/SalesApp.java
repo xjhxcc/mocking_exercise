@@ -16,20 +16,22 @@ public class SalesApp {
 		if (getEffective(sales)) return;
 		List<SalesReportData> reportDataList = getSalesReportData(sales);
 		List<SalesReportData> filteredReportDataList = getFilteredReportDataList(isSupervisor, reportDataList);
-
-
-		List<SalesReportData> tempList = new ArrayList<SalesReportData>();
-		for (int i=0; i < reportDataList.size() || i < maxRow; i++) {
-			tempList.add(reportDataList.get(i));
-		}
+		List<SalesReportData> tempList = getSalesReportDataByMaxRow(maxRow, reportDataList);
 		filteredReportDataList = tempList;
 		List<String> headers = getHeaders(isNatTrade);
 
 		SalesActivityReport report = this.generateReport(headers, reportDataList);
-		
 		EcmService ecmService = new EcmService();
 		ecmService.uploadDocument(report.toXml());
 		
+	}
+
+	private List<SalesReportData> getSalesReportDataByMaxRow(int maxRow, List<SalesReportData> reportDataList) {
+		List<SalesReportData> tempList = new ArrayList<SalesReportData>();
+		for (int i=0; i < reportDataList.size() || i < maxRow; i++) {
+			tempList.add(reportDataList.get(i));
+		}
+		return tempList;
 	}
 
 	private List<String> getHeaders(boolean isNatTrade) {
