@@ -72,10 +72,6 @@ public class SalesApp {
 	}
 
 	protected Sales getSales(String salesId,SalesDao salesDao,Sales sales,Date today) {
-//		SalesDao salesDao = new SalesDao();
-//		Sales sales = salesDao.getSalesBySalesId(salesId);
-
-//		Date today = new Date();
 		if (today.after(sales.getEffectiveTo())
 				|| today.before(sales.getEffectiveFrom())){
 			return null;

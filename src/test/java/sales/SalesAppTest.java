@@ -1,8 +1,11 @@
 package sales;
 
+import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 import static org.mockito.Mockito.*;
 
@@ -25,5 +28,12 @@ public class SalesAppTest {
         spySalesApp.getSales("DUMMY",salesDao,sales,date);
 
         verify(spySalesApp,times(1)).getSales("DUMMY",salesDao,sales,date);
+    }
+    @Test
+    public void should_return_timeList_given_true_when_call_getHeaders(){
+        SalesApp spySalesApp = spy(new SalesApp());
+        List<String> headers= Arrays.asList("Sales ID", "Sales Name", "Activity", "Time");
+        List<String> result = spySalesApp.getHeaders(true);
+        Assert.assertEquals(headers,result);
     }
 }
