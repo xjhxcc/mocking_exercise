@@ -60,4 +60,10 @@ public class SalesAppTest {
         List<SalesReportData> result = mockSalesApp.getSalesReportData(false,sales,reportDataList,filteredDataList);
         Assert.assertNotNull(result);
     }
+    @Test
+    public void should_run_1_times_given_salesActivityReport_when_call_uploadEcmServiceDocument(){
+        SalesActivityReport salesActivityReport=mock(SalesActivityReport.class);
+        boolean result = mockSalesApp.uploadEcmServiceDocument(salesActivityReport);
+        Assert.assertEquals(true,result);
+    }
 }
