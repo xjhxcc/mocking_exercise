@@ -66,4 +66,13 @@ public class SalesAppTest {
         boolean result = mockSalesApp.uploadEcmServiceDocument(salesActivityReport);
         Assert.assertEquals(true,result);
     }
+    @Test
+    public void should_return_not_null_given_maxRow_and_reportDataList_when_call_replaceFilteredReportDataList() {
+        List<SalesReportData> reportDataList = new ArrayList<>();
+        List<SalesReportData> filteredDataList = new ArrayList<>();
+        SalesReportData salesReportData = mock(SalesReportData.class);
+        reportDataList.add(salesReportData);
+        List<SalesReportData> result = mockSalesApp.replaceFilteredReportDataList(1,reportDataList,filteredDataList);
+        Assert.assertNotNull(result);
+    }
 }
