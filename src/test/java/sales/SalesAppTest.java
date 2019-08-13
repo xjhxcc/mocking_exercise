@@ -24,6 +24,8 @@ public class SalesAppTest {
     EcmService ecmService;
     @Mock
     Date date;
+    @Mock
+    SalesReportData salesReportData;
 
     @InjectMocks
     SalesApp mockSalesApp;
@@ -48,5 +50,14 @@ public class SalesAppTest {
         List<String> result = spySalesApp.getHeaders(true);
         Assert.assertEquals(headers,result);
 
+    }
+    @Test
+    public void should_return_not_null_given_sales_when_call_getSalesReportData() {
+        List<SalesReportData> reportDataList = new ArrayList<>();
+        List<SalesReportData> filteredDataList = new ArrayList<>();
+        reportDataList.add(salesReportData);
+        Sales sales = new Sales();
+        List<SalesReportData> result = mockSalesApp.getSalesReportData(false,sales,reportDataList,filteredDataList);
+        Assert.assertNotNull(result);
     }
 }
